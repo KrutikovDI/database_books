@@ -21,11 +21,10 @@ def book_view(request, date):
     book_max_data = False
     if Book.objects.filter(pub_date__lt=date_obj):
         book_min = Book.objects.filter(pub_date__lt=date_obj)[0]
-        book_min_data = book_min.pub_date
+        book_min_data = datetime.strftime(book_min.pub_date, '%Y-%m-%d')
     if Book.objects.filter(pub_date__gt=date_obj):
         book_max = Book.objects.filter(pub_date__gt=date_obj)[0]
-        book_max_data = book_max.pub_date
-        print(f'Дата вперед {book_max_data}')
+        book_max_data = datetime.strftime(book_max.pub_date, '%Y-%m-%d')
 
     context = {
         'book': book,
